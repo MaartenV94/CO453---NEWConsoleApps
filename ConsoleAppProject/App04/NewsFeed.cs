@@ -15,21 +15,19 @@ namespace ConsoleAppProject.App04
     /// search or ordering functions.
     ///</summary>
     ///<author>
-    ///  Michael Kölling and David J. Barnes
+    ///  Maarten Vanderbeeken
     ///  version 0.1
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<MessagePost> messages;
-        private readonly List<PhotoPost> photos;
+        public List<Post> PostList { get; set; }
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
         public NewsFeed()
         {
-            messages = new List<MessagePost>();
-            photos = new List<PhotoPost>();
+            PostList = new List<Post>();
         }
 
 
@@ -38,19 +36,9 @@ namespace ConsoleAppProject.App04
         /// 
         /// @param text  The text post to be added.
         ///</summary>
-        public void AddMessagePost(MessagePost message)
+        public void AddPost(Post post)
         {
-            messages.Add(message);
-        }
-
-        ///<summary>
-        /// Add a photo post to the news feed.
-        /// 
-        /// @param photo  The photo post to be added.
-        ///</summary>
-        public void AddPhotoPost(PhotoPost photo)
-        {
-            photos.Add(photo);
+            PostList.Add(post);
         }
 
         ///<summary>
@@ -60,16 +48,9 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             // display all text posts
-            foreach (MessagePost message in messages)
+            foreach (Post post in PostList)
             {
-                message.Display();
-                Console.WriteLine();   // empty line between posts
-            }
-
-            // display all photos
-            foreach (PhotoPost photo in photos)
-            {
-                photo.Display();
+                post.Display();
                 Console.WriteLine();   // empty line between posts
             }
         }
