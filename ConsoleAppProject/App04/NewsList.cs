@@ -16,16 +16,17 @@ namespace ConsoleAppProject.App04
     ///</summary>
     ///<author>
     ///  Maarten Vanderbeeken
-    ///  version 0.1
+    ///  version 0.3
     ///</author> 
-    public class NewsFeed
+    public class NewsList
     {
+        public const string Author = "Maarten";
         public List<Post> PostList { get; set; }
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
-        public NewsFeed()
+        public NewsList()
         {
             PostList = new List<Post>();
         }
@@ -53,6 +54,39 @@ namespace ConsoleAppProject.App04
                 post.Display();
                 Console.WriteLine();   // empty line between posts
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="author"></param>
+        public void DisplayUsersPost(string author)
+        {
+            foreach (Post post in PostList)
+            {
+                if(post.Author == author)
+                {
+                    post.Display();
+                    Console.WriteLine("====================");
+                }
+            }
+        }
+        /// <summary>
+        /// This method fill find and return a post with a matching ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Post FindPost(int id)
+        {
+            return PostList[id - 1];
+        }
+        /// <summary>
+        /// This method removes posts with a matching ID.
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveComment(int id)
+        {
+            Post post = FindPost(id);
+            PostList.Remove(post);
         }
     }
 

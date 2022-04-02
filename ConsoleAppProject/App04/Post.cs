@@ -9,16 +9,22 @@ namespace ConsoleAppProject.App04
 
         private readonly List<String> comments;
 
-        // username of the post's author
         public String Author { get; }
 
         public DateTime Timestamp { get; }
 
+        public int PostID { get; set; }
+
+        public static int Count;
+
         /// <summary>
-        /// constructor
+        /// constructor for objects in the Post class.
         /// </summary>
         public Post(string author)
         {
+            Count++;
+            PostID = Count;
+
             Author = author;
             Timestamp = DateTime.Now;
 
@@ -69,6 +75,7 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"    Post ID {PostID}");
             Console.WriteLine($"    Author: {Author}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -88,7 +95,7 @@ namespace ConsoleAppProject.App04
             }
             else
             {
-                Console.WriteLine($"    Comment(s): {comments.Count}  Click here to view.");
+                Console.WriteLine($"    {comments.Count} Comment(s).  Click here to view.");
             }
         }
 
@@ -114,11 +121,11 @@ namespace ConsoleAppProject.App04
 
             if (minutes > 0)
             {
-                return minutes + " minutes ago";
+                return minutes + " minute(s) ago";
             }
             else
             {
-                return seconds + " seconds ago";
+                return seconds + " second(s) ago";
             }
         }
     }
